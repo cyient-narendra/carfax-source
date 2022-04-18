@@ -1,0 +1,76 @@
+.box{
+    position: absolute;
+    width: 100%;
+   height: 100%;
+   top: 1px;
+    margin: 10px;
+}
+.box h2{
+    font-family: play;
+    margin: 0 0 30px;
+    padding: 0;
+    color: rgb(65, 10, 10);
+    text-align: center;
+}
+.box h1{
+    font-family: play;
+    margin: 0 0 30px;
+    padding: 0;
+    color: rgb(65, 10, 10);
+    text-align: center;
+}
+input [type=text]{
+    text-align: center;
+    margin: 10px;
+}
+
+.loginMain{
+	/* background-image: url("../assets/bg.044b4baf2679e58114e0.png") no-repeat center center; */
+	background-size: contain;
+	background-image: url("/src/assets/bg-image.jpg") no-repeat center center;
+	position: relative;
+}
+.loginMain .overlay{
+	min-height: 100%;
+    
+	background: linear-gradient(40deg, rgba(32,150,255,0.75), rgba(5,255,163,0.75)) !important;
+}
+.loginMain .formMain{
+	
+	position: fixed;
+	top: 0px;
+	bottom: 0px;
+	margin: auto;
+	left: 0px;
+	right: 0px;
+	
+	border-radius: 50%;
+	padding: 30px 60px 0 60px;
+}
+.formMain input{
+	height: 38px;
+}
+#login{
+    height: 250px;
+    width: 300px;
+    margin:135px;
+    text-align: center;
+    left: 439px;
+    top: 100px;
+}
+.image{
+    background-image:url('src/assets/car1.webp');
+    height: 100%; 
+
+  /* Center and scale the image nicely */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+    
+  }
+  .select{
+      width: 280px;
+      height: 38px;
+      border-radius: 5px;
+
+  }

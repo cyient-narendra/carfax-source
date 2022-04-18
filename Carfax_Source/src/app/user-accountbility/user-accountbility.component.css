@@ -1,0 +1,52 @@
+.errormessage{
+    color: red;
+    font-size: 12px;
+  }
+  .btnsave{
+    height: 32px;
+    padding: 5px 28px;
+    background: #41c141;
+    color: white;
+    width: 150px;
+    border:none;
+    border-radius: 2px;
+    cursor: pointer !important;
+  }
+  .textboxsize{
+    width: 250px !important;
+  }
+  .btnalign{
+    margin-left: 8px;
+    margin-top: -1px;
+  }
+  .tblheading{
+    width: 100%;
+    background: #0099a8;
+    color: white;
+    text-align: center;
+    position:sticky !important;
+   top:0;
+}
+.fixTableHead {
+  overflow-y: auto;
+  height: 400px;
+}
+.fixTableHead thead th {
+  position: sticky !important;
+  top: 0;
+}
+table {
+  border-collapse: collapse;        
+  width: 100%;
+}
+.total{
+  width: auto;
+    background: #ff8c00;
+    padding: 0px 2px;
+    border-radius: 3px;
+    color: #fff;
+}
+.btnDisable{
+pointer-events: none;
+opacity:0.5 ;
+}

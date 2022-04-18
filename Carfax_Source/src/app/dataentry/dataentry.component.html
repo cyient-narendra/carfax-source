@@ -1,0 +1,246 @@
+<fieldset class="border rounded-2 p-1">
+    <legend class="float-none w-auto px-4">Accident</legend>
+    <div class="row col-12 col-lg-12 col-md-12">
+        <form>
+            <div class="form-group col-md-12">
+                <label for='name'>Agency_ori:</label>
+                <input type='text' id='name' [(ngModel)]="form.agencyori" name="agencyori"
+                    (keypress)="omit_special_char($event)" onCopy="returnfalse" onDrag="returnfalse"
+                    onDrop="returnfalse" onPaste="returnfalse" autocomplete=off />
+                <label for="recDate">Rec_Date</label>
+                <input type="date" id="recDate" [(ngModel)]="form.receivedDate" name="receivedDate"
+                    style="width: 185px;height: 23px;">
+                <label for="source">Source</label>
+                <input type="text" id="source" value="CYIENT" name="source" disabled>
+                <label for="rfi">RFI</label>
+                <input type="text" id="rfi" [(ngModel)]="form.rfi" name="rfi" (keypress)="omit_special_char($event)"
+                    onCopy="returnfalse" onDrag="returnfalse" onDrop="returnfalse" onPaste="returnfalse"
+                    autocomplete=off />
+                <label for="Transaction">Transaction ID</label>
+                <input type="text" id="Transaction" disabled>
+                <label for="asset">Asset_locator</label>
+                <input type="text" id="asset" disabled>
+                <label for="file">File org name</label>
+                <input type="text" id="file" [(ngModel)]="form.fileorgname" name="fileorgname"
+                    (keypress)="specialUnderscoreDot($event)" onCopy="returnfalse" onDrag="returnfalse"
+                    onDrop="returnfalse" onPaste="returnfalse" autocomplete=off />
+                <label for="control">Control No</label>
+                <input type="text" id="control" [(ngModel)]="form.controlno" name="controlno"
+                    (keypress)="numberOnly($event)" onCopy="returnfalse" onDrag="returnfalse" onDrop="returnfalse"
+                    onPaste="returnfalse" autocomplete=off />
+                <label for="reportno" style="margin-left: 14px;">Report_No</label>
+                <input type="text" id="reportno" [(ngModel)]="form.reportno" name="reportno"
+                    (keypress)="omit_special_char($event)" onCopy="returnfalse" onDrag="returnfalse"
+                    onDrop="returnfalse" onPaste="returnfalse" autocomplete=off />
+                <label for="crash">Crash Date</label>
+                <input type="date" id="crash" [(ngModel)]="form.crashdate" name="crashdate"
+                    style="width: 194px;height: 23px;">
+                <label for="reporttype">Report_Type</label>
+                <select id="reporttype" #mySelect (change)="onSelect(mySelect.value)"
+                    style="width: 191px;margin-left: -6px;height: 23px;">
+                    <option>Select</option>
+                    <option>0</option>
+                    <option>1</option>
+                </select>
+                <label for="inputpdf">PDF_Name</label>
+                <input type="text" id="inputpdf" (keypress)="specialUnderscore($event)" value="{{this.pdfname}}"
+                    onCopy="returnfalse" onDrag="returnfalse" onDrop="returnfalse" onPaste="returnfalse"
+                    autocomplete=off />
+                <label for="city">City</label>
+                <input type="text" id="city" [(ngModel)]="form.city" name="city"
+                    (keypress)="specialDashDotSpace($event)" onCopy="returnfalse" onDrag="returnfalse"
+                    onDrop="returnfalse" onPaste="returnfalse" autocomplete=off />
+                <label for="county">County</label>
+                <input type="text" id="county" [(ngModel)]="form.county" name="county"
+                    (keypress)="specialDashDotSpace($event)" onCopy="returnfalse" onDrag="returnfalse"
+                    onDrop="returnfalse" onPaste="returnfalse" autocomplete=off />
+                <label for="state">State</label>
+                <input type="text" id="state" [(ngModel)]="form.state" name="state"
+                    (keypress)="omit_special_char($event)" maxlength="2" pattern="^0[1-9]|[1-9]\d$" required
+                    onCopy="returnfalse" onDrag="returnfalse" onDrop="returnfalse" onPaste="returnfalse"
+                    autocomplete=off />
+            </div>
+        </form>
+    </div>
+</fieldset>
+<fieldset class="border rounded-2 p-2">
+    <legend class="float-none w-auto px-4">Parties</legend>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">            
+                <table id="myTable" class="sortable" cellspacing="0">
+                    <thead>
+                        <tr table-primary>
+                            <th class="header-label">Action</th>
+                            <th class="header-label">P_ID</th>
+                            <th class="header-label">Driver_first_name</th>
+                            <th class="header-label">Driver_last_name</th>
+                            <th class="header-label">insurance_company</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let dynamic of dynamicArray; let i = index;" (click)="partiesSelect(dynamic)">
+                            <td (click)="deleteRow(i)">
+                                <i class="fa fa-trash fa-1x" style="color: red;"></i>
+                            </td>
+                            <td><input [(ngModel)]="dynamicArray[i].P_ID" class="form-control" type="text" name="P_ID"
+                                    (keypress)="numberOnly($event)" autocomplete=off></td>
+                            <td><input [(ngModel)]="dynamicArray[i].Driver_first_name" class="form-control" type="text"
+                                    name="Driver_first_name" (keypress)="specialDashSpace($event)" autocomplete=off>
+                            </td>
+                            <td><input [(ngModel)]="dynamicArray[i].Driver_last_name" class="form-control" type="text"
+                                    name="Driver_last_name" (keypress)="specialDashSpace($event)" autocomplete=off></td>
+                            <td><input [(ngModel)]="dynamicArray[i].insurance_company" class="form-control" type="text"
+                                    name="insurance_company" (keypress)="specialDashDotSpaceAnd($event)"
+                                    autocomplete=off></td>
+                        </tr>
+                        <tr>
+                            <td (click)="addRow()">
+                                <i class="fa fa-plus fa-1x" style="color: aquamarine;"></i>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>            
+        </div>
+    </div>
+</fieldset>
+<fieldset class="border rounded-2 p-2">
+    <legend class="float-none w-auto px-4">Vehicles</legend>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <table id="myTable" class="sortable">
+                <thead>
+                    <tr table-primary>
+                        <th class="header-label">V_ID</th>
+                        <th class="header-label">vin</th>
+                        <th class="header-label">vehicle_make</th>
+                        <th class="header-label">vehicle_model</th>
+                        <th class="header-label">vehicle_plate</th>
+                        <th class="header-label">vehicle_year</th>
+                        <th class="header-label">plate_state</th>
+                        <th class="header-label">airbag</th>
+                        <th class="header-label">damage</th>
+                        <th class="header-label">extraction</th>
+                        <th class="header-label">fire</th>
+                        <th class="header-label">point_of_impact</th>
+                        <th class="header-label">towing</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dynamic of dynamicArray; let i = index;" >
+
+                        <td><input [(ngModel)]="dynamicArray[i].V_ID" class="form-control" type="text" name="V_ID"
+                                (keypress)="numberOnly($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].vin" class="form-control" type="text" name="vin"
+                                (keypress)="omit_special_char($event)" style="width: 80px;" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].vehicle_make" class="form-control" type="text"
+                                name="vehicle_make" (keypress)="specialDash($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].vehicle_model" class="form-control" type="text"
+                                name="vehicle_model" (keypress)="specialDash($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].vehicle_plate" class="form-control" type="text"
+                                name="vehicle_plate" (keypress)="omit_special_char($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].vehicle_year" class="form-control" type="text"
+                                name="vehicle_year" (keypress)="omit_special_char($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].plate_state" class="form-control" type="text"
+                                name="plate_state" (keypress)="omit_special_char($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].airbag" class="form-control" type="text" name="airbag"
+                                (keypress)="specialDashSpace($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].damage" class="form-control" type="text" name="damage"
+                                (keypress)="specialDashSpace($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].extraction" class="form-control" type="text"
+                                name="extraction" (keypress)="omit_special_char($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].fire" class="form-control" type="text" name="fire"
+                                (keypress)="omit_special_char($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].point_of_impact" class="form-control" type="text"
+                                name="point_of_impact" (keypress)="specialDashSpace($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray[i].towing" class="form-control" type="text" name="towing"
+                                (keypress)="omit_special_char($event)" autocomplete=off></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+<fieldset class="border rounded-2 p-2">
+    <legend class="float-none w-auto px-4">Passengers</legend>
+    <div class="row">
+        <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12" style="margin: 5px;">
+            <table id="myTable" class="sortable" style="width: 500px;">
+                <thead>
+                    <tr table-primary>
+                        <th class="header-label">Action</th>
+                        <th class="header-label">Passenger_first_name</th>
+                        <th class="header-label">Passenger_last_name</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let dynamic of dynamicArray1; let i = index;" (click)="passengersSelect(dynamic)">
+                        <td (click)="deletePassengerRow(i)">
+                            <i class="fa fa-trash fa-1x" style="color: red;"></i>
+                        </td>
+                        <td><input [(ngModel)]="dynamicArray1[i].Passenger_first_name" class="form-control" type="text"
+                                name="Passenger_first_name" (keypress)="specialDashSpace($event)" autocomplete=off></td>
+                        <td><input [(ngModel)]="dynamicArray1[i].Passenger_last_name" class="form-control" type="text"
+                                name="Passenger_last_name" (keypress)="specialDashSpace($event)" autocomplete=off></td>
+                    </tr>
+                    <tr>
+                        <td (click)="addPassengerRow()">
+                            <i class="fa fa-plus fa-1x" style="color: aquamarine;"></i>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</fieldset>
+<!-- <div class="w-100 card" style="overflow: scroll;">
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;">
+        <ng2-smart-table [settings]="settings" ></ng2-smart-table>
+    </div>
+</div> -->
+<div class="w-200 card p-1 mt-3">
+    <div class="row">
+        <form>
+            <div class="form-group col-md-12">
+                <label for='dc'>DC Remarks:</label>
+                <input type='text' id='dc' [(ngModel)]="form.dcremarks" name="dcremarks" autocomplete=off />
+                <label for='dctime'>DC Time:</label>
+                <input type='text' id='dctime' [(ngModel)]="form.dctime" name="dctime" autocomplete=off />
+                <label for="qc">QC Remarks</label>
+                <input type="text" id="qc" style="width: 155px;" [(ngModel)]="form.qcremarks" name="qcremarks"
+                    autocomplete=off />
+                    <label for="qctime">QC Time</label>
+                <input type="text" id="qctime" style="width: 155px;" [(ngModel)]="form.qctime" name="qctime"
+                    autocomplete=off />
+                <label for="qa">QA Remarks</label>
+                <input type="text" id="qa" [(ngModel)]="form.qaremarks" name="qaremarks" autocomplete=off />
+                <label for="qa">QA Time</label>
+                <input type="text" id="qatime" [(ngModel)]="form.qatime" name="qatime" autocomplete=off />
+                <!-- <label for="time">Time Spent</label>
+                <input type="text" id="time" style="width: 155px;" [(ngModel)]="form.timespent" name="timespent"
+                    autocomplete=off /> -->
+                <label for="report" style="width: 182px !important;height: 23px;">Type Of Report</label>
+                <select id="report" style="width: 155px;height: 23px;" #myReportSelect (change)="onReportSelect(myReportSelect.value)">
+                    <option>Select</option>
+                    <option>Rejected Reports</option>
+                    <option>Indexed Reports</option>
+                    <option>Exception Reports</option>
+                </select>
+                <label for="status" style="margin-left: 12px;width: 155px !important;height: 23px;">Status</label>
+                <select id="status" #myStatusselect (change)="statusSelect(myStatusselect.value)"
+                    style="width: 155px;margin-left: -35px;height: 23px;">
+                    <option>Select</option>
+                    <option>INPROGRESS</option>
+                    <option>REJECT</option>
+                    <option>PEND</option>
+                    <option>COMP</option>
+                </select>
+                <button class="btn btn-success" type="submit" (click)="onSubmit()"
+                    style="width: 100px;text-align: center;margin-left: 10px;">Submit</button>
+                <!-- <button class="btn btn-success" type="submit"
+                style="width: 100px;text-align: center;margin-left: 390px;">Go Back</button>
+                <button class="btn btn-success" type="submit"
+                style="width: 100px;text-align: center;margin-left: 430px;">Check</button>  -->
+            </div>
+        </form>
+    </div>
+</div>

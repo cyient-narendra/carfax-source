@@ -1,0 +1,14 @@
+#radio{    
+    margin: 10px;
+}  
+  button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    transform: translate(50%, -50%);    
+    border-radius: 50px;
+
+  }
+  .full-with-dialog .mat-dialog-container {
+    border-radius: 20px !important;
+ }

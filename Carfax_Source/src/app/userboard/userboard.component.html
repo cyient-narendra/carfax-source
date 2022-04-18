@@ -1,0 +1,59 @@
+<div id="file" class="mb-3" style="margin: 15px;">
+    <h2 >Alloted Jobs</h2>
+    <div class="row" class="border border-dark" style="border-radius: 5px;padding: auto; width: 100%;">
+      <div class="row">
+        <form>
+          <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 pad">
+            <table id="dtBasicExample" class="table table-bordered table-sm table-hover" cellspacing="0" width="100%">
+              <thead>
+                <tr>
+                  
+                  <th class="th-sm">File_org_name
+                  </th>
+                  <th class="th-sm">DC_Status
+                  </th>                  
+                  <th class="th-sm">Received Date
+                  </th>
+                  <th class="th-sm">QC_Status
+                  </th>
+                  <th class="th-sm">QA_Status
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor = "let file of filedata">                  
+                  <td>{{file.File_org_name}}</td>
+                  <td>{{file.DC_Status}}</td>
+                  <td>{{file.ReceivedDate}}</td> 
+                  <td>{{file.QC_Status}}</td>
+                  <td>{{file.QA_Status}}</td>                
+                </tr>
+              </tbody>
+            </table>
+            <!-- <div style="text-align: right;">
+              <button class="btn btn-success minW80 ml-2" >Start Job <span
+                  class="fa fa-check"></span></button>
+              <button class="btn btn-warning minW80 ml-2" >End Job <span
+                  class="fa fa-times"></span></button><br><br>
+            </div> -->
+          </div>
+        </form>
+      </div>
+      <div class="col-6">
+      </div>
+    </div>
+  </div>
+  <!-- <div class="text-center">
+    <button class="btn btn-primary btn-sm" type="submit" style="position:absolute;left:550px"
+      onclick="window.open('about:blank','_self',''); window.close();">Exit</button>
+    <button class="btn btn-primary btn-sm" type="submit" style="position:absolute;left:480px"
+      >Reset</button>
+  </div> -->
+  <router-outlet></router-outlet>
+  <div class="container">
+    <!-- <span style="font-size: 30px;">User</span> -->
+    <ul>
+     
+    </ul>
+    <router-outlet></router-outlet>
+  </div>

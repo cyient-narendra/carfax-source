@@ -1,0 +1,108 @@
+<div class="w-200 card p-1 mt-1">
+    <div class="row col-12 col-lg-12 col-md-6">
+        <div class="col-2 col-lg-2 col-md-2" id="test">
+            <div class="card" id="card">
+                <div class="container">
+                    <form>
+                        <label for="shift">Shift
+                            <select #shiftSelect (change)="shiftChange(shiftSelect.value)"
+                                style="margin-left: 15px;width: 106px;">
+                                <option>Select</option>
+                                <option>All</option>
+                                <option>First</option>
+                                <option>Second</option>
+                                <option>Night</option>
+                                <option>General</option>
+                            </select>
+                        </label>
+                        <label for="tl" style="margin: 10px;">TL
+                            <select #tlselect (change)="ChangeValue(tlselect.value)">
+                                <option [value]="0">Select</option>
+                                <option *ngFor="let t of tlName;">{{t.TL}}</option>
+                            </select>
+                        </label>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-1" id="test">
+            <div class="card" id="card">
+                <div class="container">
+                    <form>
+                        <label for="shift" style="margin: 5px;">Type
+                            <select #metroSelect (change)="onChange(metroSelect.value)">
+                                <option [value]="0">Select</option>
+                                <option>Metro</option>
+                                <option>Non-METRO</option>
+                            </select>
+                        </label>
+                        <label for="tl" style="margin: 5px;">Step
+                            <select #stepSelect (change)="stepChange(stepSelect.value)" style="width: 110px;">
+                                <option [value]="0">Select</option>
+                                <option>DC</option>
+                                <option>QC</option>
+                                <option>QA</option>
+                            </select>
+                        </label>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-3 col-lg-3 col-md-2" id="test">
+            <div class="card" >
+                <div class="container">
+                    <form #ngForm >
+                        Received Date <select #selectDate (change)="onDateChange(selectDate.value)" style="margin: 2px;width: 120px;">
+                            <option>Select</option>
+                            <option *ngFor="let p of receivedDate">{{p.RecedDate}}</option>                            
+                        </select>
+                        <label for="commerce">Commerce
+                            <select #commerceSelect (change)="changeCommerce(commerceSelect.value)"style="margin: 2px;">
+                                <option>Select</option>
+                                <option>Ecommerce</option>
+                                <option>Non-Ecommerce</option>
+                            </select>
+                        </label> 
+                        <!-- <label for="shift" style="margin: 2px;">Received Date From
+                            <input type="date" [(ngModel)]="form.recfromdate" name="recfromdate">
+                            </label> -->
+                        <!-- <label for="shift" style="margin: 2px;">Received Date To
+                                <input type="date" [(ngModel)]="form.rectodate" name="rectodate" style="margin-left: 20px;">
+                            </label> -->
+                        <!-- <button class="btn btn-info" (click)='reloadpage()'
+                            style="margin-left: 20px;height: 30px;">RESET</button> -->
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="col-4 col-lg-4 col-md-2">
+            <div class="card" id="card">
+                <div class="container">
+                    <form id="forms">
+                        <label for="count">Count
+                            <input type="text" id="count" name="count" [(ngModel)]="form.count"
+                                style="width: 100px;margin-left: 58px;" autocomplete=off (keyup)="onKey($event)">
+                        </label>
+                        <label for="files">Files
+                            <input type="text" style="width: 100px;margin-left: 10px;" value={{this.filesvalue}}
+                                disabled />
+                        </label>
+                        <label for="totalfiles" style="margin: 3px;">Total Files
+                            <input type="text" style="width: 100px;margin-left: 30px;" value="{{this.filescount}}"
+                                disabled />
+                        </label>
+                        <button class="btn btn-info" (click)="bulkAllot()"
+                            style="margin-left: 40px;width: 100px;height: 30px;">Allot</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-200 card p-1 mt-1" style="width: 800px;">
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;">
+        <ng2-smart-table [settings]="settings" [source]="usernames" (userRowSelect)="onUserRowSelect($event)">
+        </ng2-smart-table>
+        <span style="float: left;">Selected Persons = {{this.countRow}}</span>
+    </div>
+</div>

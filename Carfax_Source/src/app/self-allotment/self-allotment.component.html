@@ -1,0 +1,60 @@
+<div class="w-50  maintbl">
+    <div class="card p-4 w-100" style="background-color: #0099a8; border-radius: 8px;">
+        <h3 class="text-center text-white">Self Allotment</h3>
+        <form #selfallotmentForm = "ngForm" (ngSubmit)="AssignMe()">
+            <table id="tblself" style="margin-left: 18%;">
+        <tr>
+            <td class="text-white">Commers Type<label class="mandatory"> *</label></td>
+            <td>
+                <select  class="textboxsize" name="CommersType" [(ngModel)]="selfForm.commersType"  #CommersType="ngModel" required>
+                    <option value="">Select</option>
+                    <option value="E-commers">E-commers</option>
+                    <option value="Non E-commers">Non E-commers</option>
+                </select>
+                <div class="errormessage">
+                    <div *ngIf="CommersType.touched && CommersType.invalid" class="errormessage">Please Select Commers Type</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-white">Step Name<label class="mandatory"> *</label></td>
+            <td>
+                <select  class="textboxsize" name="StepName" [(ngModel)]="selfForm.stepName"  #StepName="ngModel" required>
+                    <option value="">Select</option>
+                    <option value="DC">DC</option>
+                    <option *ngIf = "isQCaccess == 'true'" value="QC">QC</option>
+                    <option *ngIf = "isQAaccess == 'true'" value="QA">QA</option>
+                </select>
+                <div class="errormessage">
+                    <div *ngIf="StepName.touched && StepName.invalid" class="errormessage">Please Select Step Name</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-white">Metro Type<label class="mandatory"> *</label></td>
+            <td>
+                <select  class="textboxsize" name="MetroType" [(ngModel)]="selfForm.metroType"  #MetroType="ngModel" required>
+                    <option value="">Select</option>
+                    <option value="Metro">Metro</option>
+                    <option value="Non-Metro">Non-Metro </option>
+                </select>
+                <div class="errormessage">
+                    <div *ngIf="MetroType.touched && MetroType.invalid" class="errormessage">Please Select Metro Type</div>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td class="text-white">Required<label class="mandatory"> *</label></td>
+            <td>
+                <input type="text"   class="textboxsize" name="Required"   [(ngModel)]="selfForm.required" (keypress)="numberOnly($event)"  #Required="ngModel"  required>
+                <div class="errormessage">
+                    <div *ngIf="Required.touched && Required.invalid" class="errormessage">Please Enter Required</div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div class="d-flex justify-content-center mt-2"><input type="submit" value="Save" class="btn btnsave" [disabled]="!selfallotmentForm.valid"></div>
+        </form>
+    
+    </div>
+</div>

@@ -1,0 +1,77 @@
+<div class="w-100 card p-1 mt-1">
+    <!-- <h5>Work Allocation</h5> -->
+    <div class="row col-12 col-lg-12 col-md-12">
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card">
+                <form>
+                    <label for="datefrom">From
+                        <input id="datefrom" type="date" [(ngModel)]="form.recdfromdate" name="recdfromdate"
+                            style="margin-left: 20px;">
+                    </label>
+                    <label for="dateto">To
+                        <input id="dateto" type="date" [(ngModel)]="form.recdtodate" name="recdtodate"
+                            style="margin-left: 20px;">
+                    </label>
+                </form>
+            </div>
+            <div style="clear: both;padding: 5px;"></div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card">
+                <form>
+                    <label for="file">
+                        <input class="form-check-input" #mSelect type="radio" name="radmet" id="file"
+                            (click)="dataFileStatusReport()" style="margin: 8px;">File Status View</label>
+                    <label for="status">
+                        <input class="form-check-input" #Select type="radio" name="radmet" id="status"
+                            (click)="ascWiseOverallStatus()" style="margin: 8px;">AscWise Overall Status</label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card">
+                <form>
+                    <label for="daily">
+                        <input class="form-check-input" #Select type="radio" name="radmet1" id="daily"
+                            (click)="ascWiseDailyStatus()" style="margin: 8px;">AscWise Daily Status</label>
+                    <!-- <label for="crash">
+                        <input class="form-check-input" #Select type="radio" name="radmet1" id="crash"
+                             style="margin: 8px;">Dup No Crash Reports</label> -->
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card" style="width: 400px;">
+                <form>
+                    <label for="agency">Agency_ORI
+                        <select #agencySelect (change)="onChange(agencySelect.value)">
+                            <option value="0">select</option>
+                            <option *ngFor="let i of agency">{{i.agency_ori}}</option>
+                        </select></label>
+                    <label for="ascname">ASC_Name
+                        <select #nameSelect (change)="onNameChange(nameSelect.value)">
+                            <option value="0">select</option>
+                            <option *ngFor="let n of name">{{n.Username}}</option>
+                        </select></label>
+                    <!-- <label for="step">Step
+                        <select style="margin-left: 65px;">
+                            <option value="0">select</option>
+                            <option></option>
+                        </select></label> -->
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf="fileshow">
+    <ng2-smart-table [settings]="filesettings" [source]="filestatus">
+    </ng2-smart-table>
+</div>
+<div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf="over">
+    <ng2-smart-table [settings]="overallsetting" [source]="overallstatus">
+    </ng2-smart-table>
+</div>
+<div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf="daily">
+    <ng2-smart-table [settings]="dailysetting" [source]="dailystatus">
+    </ng2-smart-table>
+</div>

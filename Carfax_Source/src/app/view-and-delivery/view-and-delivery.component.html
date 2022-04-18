@@ -1,0 +1,220 @@
+<div class="card p-4">
+<!-- <div class="text-center"><h3>View And Delivery- <label *ngIf="isMetro">Metro</label> <label *ngIf="isNOnMetro">Non Metro</label></h3></div> -->
+<div class="d-flex card p-2" style="width: 100%;" >
+
+<div>
+    <div>
+    <input type="radio" name="type"  id="te" value="METRO" [(ngModel)]="type" (click)="changeText('METRO')"><label for="te" class="typeRadio"> Metro</label>
+    <input type="radio" name="type"  id="tes" value="Non-METRO" style="margin-left: 10px;" [(ngModel)]="type" (click)="changeText('Non-METRO')" ><label for="tes" class="typeRadio"> Non-Metro</label>
+</div>
+</div>
+<div class="mt-2">
+    <div class="d-flex">
+      <div> <label style="margin-left: 4px;">Received Date</label> <input type="date" class="ddlsize" [(ngModel)]="revFrom" style="margin-left: 4px;" (change)="resetcommerce();"><label style="margin-left: 4px; margin-right: 4px;">To</label> <input type="date"  class="ddlsize" [(ngModel)]="revTo" >
+      </div> 
+        <div>
+        <div class="divLeft">
+            <label>Commerce <label class="mandatory"> *</label></label> 
+            <select  class="ddlsize" name="CommersType" [(ngModel)]="commersType" style="margin-left: 5px;" (change)="ddlStatesBind()" >
+                <option value="">Select</option>
+                <option value="All">All</option>
+                <option value="E-commers">E-commers</option>
+                <option value="Non E-commers">Non E-commers</option>
+            </select>
+        </div>
+        </div>
+        <div>
+            <div class="divLeft" >
+                <label>State <label class="mandatory"> *</label></label> 
+                <select  class="ddlsize" name="state" [(ngModel)]="state" style="margin-left: 44px;" (change)="ddlAgencyOriBind()">
+                    <option value="">Select</option>
+                    <option value="%">All</option>
+                    <option *ngFor="let S of StatesData" [ngValue]="S.State">{{S.State}}</option>
+                </select>
+            </div>
+    </div>
+    </div>
+   <div class="d-flex mt-4">
+       <div>
+        <label style="margin-left: 4px;">Delivery Date</label> <input type="date"  class="ddlsize" [(ngModel)]="delFrom" style="margin-left: 10px;" ><label style="margin-left: 4px; margin-right: 4px;">To</label> <input type="date"  class="ddlsize" [(ngModel)]="delTo" >
+       </div>
+       <div>
+        <div class="divLeft" style="margin-left: 20px;">
+            <label>Agency-Ori <label class="mandatory"> *</label></label> 
+            <select  class="ddlsize" name="Agency" [(ngModel)]="Agency" style="margin-left: 5px;" >
+                <option value="">Select</option>
+                <option value="All">All</option>
+                <option *ngFor="let A of AgencyOriData" [ngValue]="A.agency_ori">{{A.agency_ori}}</option>
+            </select>
+        </div>
+       
+       </div>
+       <div>
+        <div class="divLeft">
+            <label>Report Type</label> 
+            <select  class="ddlsize" name="Report Type" [(ngModel)]="ReportType" style="margin-left: 5px;" >
+                <option value="">Select</option>
+                <option value="All">All</option>
+                <option value="Received Reports">Received Reports</option>
+                <option value="Indexed Reports">Indexed Reports</option>
+                <option value="Rejected Reports">Rejected Reports</option>
+                <option value="Exception Reports">Exception Reports</option>
+                <option value="Duplicate Reports">Duplicate Reports</option>
+            </select>
+        </div>
+       </div>
+   </div>
+   <div class="d-flex mt-4">
+       <div>
+        <div >
+            <label style="margin-left: 5px;">QC BY</label> 
+            <select  class="ddlsize" name="state" [(ngModel)]="QCBy" style="margin-left: 20px;" >
+                <option value="">Select</option>
+                <option *ngFor="let A of AssocitesData" [ngValue]="A.Username">{{A.Username}}</option>
+            </select>
+        </div>
+       </div>
+       <div>
+        <div class="divLeft">
+            <label>QA BY</label> 
+            <select  class="ddlsize" name="state" [(ngModel)]="QABy" style="margin-left: 5px;" >
+                <option value="">Select</option>
+                <option *ngFor="let A of AssocitesData" [ngValue]="A.Username">{{A.Username}}</option>
+            </select>
+        </div>
+       </div>
+       <div class="divLeft">
+           <input id=myCheckbox type="checkbox" name="delivery" [(ngModel)]="delivery" (change)="checkDeliveryStatus($event)" checked="none">Delivery
+       </div>
+   </div>
+</div>
+<div class="mt-2 d-flex justify-content-end">
+<div> <input type="button" value="Search" class="btnsave" (click)="getSearchData()"></div>
+</div>
+</div>
+</div>
+<!--Feedback Large modal -->
+<div class="modal" id="FeedbackModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [ngStyle]="{'display': popupDisplay}">
+    <div class="modal-dialog modal-xl modal-xl">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title heading" id="exampleModalLabel">View And Delivery</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closepopup()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <div class="w-100" style="overflow: scroll;overflow-y: hidden;" >
+                        <div class="d-flex justify-content-between">
+                            <div class="d-flex">
+                        <div><div (click)="exportAsXLSXForSearchData()" style="cursor: pointer;"><img src="assets/img/xlsicon2.png" width="12%"></div></div>
+                        <div><button class="btnsave" (click)="xmlexport()">Bulk XML</button></div>
+                    </div>
+                        <div > <div>Total Records: <span class="total"> {{searchResultData.length}}</span></div></div>
+                   
+                    </div>
+                        <div class="fixTableHead">
+                        <table class="w-100 table ">
+                            <thead class="tblheading">
+                            <tr>
+                                <th><input type="checkbox" id="chkall" name="allchk"  (click)="checkitems($event)" [(ngModel)]="allchk"></th>
+                                <th>Agency Ori</th>
+                                <th>Source</th>
+                                <th>PDF Name</th>
+                                <th>Received Date</th>
+                                <th>Transaction Id</th>
+                                <th>Asset Locator</th>
+                                <th>Package Id</th>
+                                <th>Date Type</th>
+                                <th>City</th>
+                                <th>Country</th>
+                                <th>State</th>
+                                <th>Crash Date</th>
+                                <th>Report Number</th>
+                                <th>Report Type</th>
+                                <th>RFI</th>
+                                <th>File Org Name</th>
+                                <th>DC Name</th>
+                                <th>DC Status</th>
+                                <th>DC Comp Date</th>
+                                <th>DC Remarks</th>
+                                <th>DC Time</th>
+                                <th>QC By</th>
+                                <th>QC Allotment</th>
+                                <th>QC Status</th>
+                                <th>QC Comp Date</th>
+                                <th>QC Remarks</th>
+                                <th>QC Time</th>
+                                <th>QA By</th>
+                                <th>QA Allotment</th>
+                                <th>QA Status</th>
+                                <th>QA Comp Date</th>
+                                <th>QA Remarks</th>
+                                <th>QA Time</th>
+                                <th>Shipment</th>
+                                <th>Total Time</th>
+                                <th>Duplicate Status</th>
+                                <th>Type Of Report</th>
+                                <th>No Of Units</th>
+                                <th>Doc Title</th>
+                                <th>Metto Type</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                             <tr *ngFor="let item of searchResultData; let i=index;">
+                                <td><input type="checkbox" name="chk" id="chk_{{i}}" (change)="CheckSingle($event)"  [(ngModel)]="item.Selected" [checked]="item.Selected"><label></label></td>
+                                <td>{{item.agency_ori}}</td>
+                                <td>{{item.source}}</td>
+                                <td>{{item.pdf_name}}</td>
+                                <td>{{item.Received_Date}}</td>
+                                <td>{{item.transaction_id}}</td>
+                                <td>{{item.asset_locator}}</td>
+                                <td>{{item.package_id}}</td>
+                                <td>{{item.data_type}}</td>
+                                <td>{{item.City}}</td>
+                                <td>{{item.County}}</td>
+                                <td>{{item.state}}</td>
+                                <td>{{item.crash_date}}</td>
+                                <td>{{item.report_number}}</td>
+                                <td>{{item.report_type}}</td>
+                                <td>{{item.RFI}}</td>
+                                <td>{{item.File_org_name}}</td>
+                                <td>{{item.DC_Name}}</td>
+                                <td>{{item.DC_Status}}</td>
+                                <td>{{item.DC_Comp_Date}}</td>
+                                <td>{{item.DC_Remarks}}</td>
+                                <td>{{item.DC_Time}}</td>
+                                <td>{{item.QC_By}}</td>
+                                <td>{{item.QC_Allotment}}</td>
+                                <td>{{item.QC_Status}}</td>
+                                <td>{{item.QC_Comp_Date}}</td>
+                                <td>{{item.QC_Remarks}}</td>
+                                <td>{{item.QC_Time}}</td>
+                                <td>{{item.QS_By}}</td>
+                                <td>{{item.QA_Allotment}}</td>
+                                <td>{{item.QA_Status}}</td>
+                                <td>{{item.QA_Comp_Date}}</td>
+                                <td>{{item.QA_Remarks}}</td>
+                                <td>{{item.QA_Time}}</td>
+                                <td>{{item.Shipment}}</td>
+                                <td>{{item.Total_Time}}</td>
+                                <td>Duplicate</td>
+                                <td>{{item.Type_Of_Report}}</td>
+                                <td>No of units</td>
+                                <td>Doc Title</td>
+                                <td>{{item.Metro_Type}}</td>
+                            </tr> 
+                           <tr *ngIf="searchResultData.length==0">
+                                <td colspan="6"><div style="text-align: center;color: red;">No Records are avaliable </div></td>
+                            </tr>
+                        </tbody>
+                        </table>
+                    </div>
+                    </div>
+                </div>
+          </div>
+      </div>
+    </div>
+  </div>
+

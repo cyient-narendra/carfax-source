@@ -1,0 +1,110 @@
+<div class="w-200 card p-1 mt-3" style="width: 1370px !important;">
+    <fieldset>
+        <legend>Accident</legend>        
+    </fieldset>
+    <div class="row col-12 col-lg-12 col-md-12">
+        <form #ngForm [formGroup] = "hyperdataForm">
+            <div class="form-group col-md-12">
+                <label for="file">File org name</label>
+                <select id="file" type="file" #myfileselect (change)="fileSelect(myfileselect.value)" name="file"
+                    style="width: 185px;margin-left: 5px;height: 23px;">
+                    <!-- <option>Select</option> -->
+                    <option *ngFor="let p of fileOrgName">{{p.File_org_name}}</option>
+                    <!-- <option *ngFor="let p of pdf">{{p.name}}</option> -->
+                </select>                                
+                <label for='agency'>Agency_ori:</label>                
+                <input type='text' id='agency' formControlName = "agencyori"  (keypress)="omit_special_char($event)" autocomplete=off />
+                <label for="recDate">Rec_Date</label>
+                <input type="text" id="recDate" formControlName = "receivedDate" style="width: 185px;" (keypress)="numberOnly($event)"  autocomplete=off />
+                <label for="source">Source</label>
+                <input type="text" id="source" value="CYIENT" name="source" disabled>
+                <label for="rfi">RFI</label>
+                <input type="text" id="rfi" formControlName="rfi" (keypress)="omit_special_char($event)"  autocomplete=off>
+                <label for="Transaction">TransactionID</label>
+                <input type="text" id="Transaction" disabled>
+                <label for="asset">Asset_locator</label>
+                <input type="text" id="asset" disabled>
+                <label for="control">Control No</label>
+                <input type="text" id="control" formControlName="controlno" (keypress)="numberOnly($event)" autocomplete=off>
+                <label for="inputpdf">PDF_Name</label>
+                <input type="text" id="inputpdf" (keypress)="specialUnderscore($event)" formControlName ="pdfname"  autocomplete=off>
+                <label for="crash">Crash Date</label>
+                <input type="text" id="crash" formControlName="crashdate" style="width: 194px;" (keypress)="numberOnly($event)" autocomplete=off [ngStyle]="this.crashdatecolor > 90 ? {'color': 'black', 'background-color': 'lightgreen'} : {'color': 'black', 'background-color': 'yellow'}" multiple><small>{{this.crashdatecolor}}</small>
+                <label for="reporttype" style="margin-left: 5px">Report_Type</label>
+                <input type="text" id="reporttype" formControlName="reporttype"  (keypress)="numberOnly($event)" autocomplete=off>
+                <label for="reportno" style="margin-left: 10px;">Report_No</label>
+                <input type="text" id="reportno" formControlName="reportno" (keypress)="omit_special_char($event)" autocomplete=off [ngStyle]="this.reportcolor > 90 ? {'color': 'black', 'background-color': 'lightgreen'} : {'color': 'black', 'background-color': 'yellow'}" multiple><small>{{this.reportcolor}}</small>                
+                <label for="city">City</label>
+                <input type="text" id="city" formControlName="city" (keypress)="specialDashDotSpace($event)"  autocomplete=off [ngStyle]="this.citycolor > 90 ? {'color': 'black', 'background-color': 'lightgreen'} : {'color': 'black', 'background-color': 'yellow'}" multiple><small>{{this.citycolor}}</small>
+                <label for="county">County</label>
+                <input type="text" id="county" formControlName ="county" (keypress)="specialDashDotSpace($event)" autocomplete=off [ngStyle]="this.countycolor > 90 ? {'color': 'black', 'background-color': 'lightgreen'} : {'color': 'black', 'background-color': 'yellow'}" multiple><small>{{this.countycolor}}</small>
+                <label for="state">State</label>
+                <input type="text" id="state" formControlName="state" (keypress)="omit_special_char($event)" maxlength="2" pattern="^0[1-9]|[1-9]\d$"
+                     required autocomplete=off />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="w-100 card" style="overflow: scroll;">
+    <fieldset>
+        <legend>Parties</legend>
+    </fieldset>
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf ="dataShow">
+        <ng2-smart-table [settings]="parties" [source]="partiesData" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)"></ng2-smart-table>
+    </div>
+</div>
+<div class="w-100 card" style="overflow: scroll;">
+    <fieldset>
+        <legend>Vechicles</legend>
+    </fieldset>
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf ="dataShow">
+        <ng2-smart-table [settings]="vechicles" [source]="vechiclesData" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)"></ng2-smart-table>
+    </div>
+</div>
+<div class="w-200 card p-1 mt-3">
+    <fieldset>
+        <legend>Passengers</legend>
+    </fieldset>
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf ="dataShow">
+        <ng2-smart-table [settings]="passengers" [source]="passengersData" (deleteConfirm)="onDeleteConfirm($event)" (editConfirm)="onEditConfirm($event)"></ng2-smart-table>
+    </div>
+</div>
+<div class="w-200 card p-1 mt-3">
+    <div class="row">
+        <form #ngForm [formGroup] = "timespentdata">
+            <div class="form-group col-md-12">
+                <label for='dc'>DC Remarks:</label>
+                <input type='text' id='dc' formControlName="dcremarks" autocomplete=off>
+                <label for='dctime'>DC Time:</label>
+                <input type='text' id='dctime' formControlName="dctime" autocomplete=off>
+                <label for="qc">QC Remarks</label>
+                <input type="text" id="qc"  formControlName="qcremarks" autocomplete=off>
+                <label for="qctime">QC Time</label>
+                <input type="text" id="qctime"  formControlName="qctime" autocomplete=off>
+                <label for="qa">QA Remarks</label>
+                <input type="text" id="qa" formControlName="qaremarks" autocomplete=off>
+                <label for="qatime">QA Time</label>
+                <input type="text" id="qatime" formControlName="qatime" autocomplete=off>
+                <!-- <label for="time">Time Spent</label>
+                <input type="text" id="time" style="width: 185px;" formControlName="timespent" autocomplete=off> -->
+                <label for="report" style="width: 108px !important; margin-left: 16px;">Type Of Report</label>
+                <select id="report" style="width: 191px;height: 25px;">
+                    <option>Select</option>
+                    <option>Rejected Reports</option>
+                    <option>Indexed Reports</option>
+                    <option>Exception Reports</option>
+                </select>
+                <label for="status" >Status</label>
+                <select id="status" #myStatusselect (change)="statusSelect(myStatusselect.value)"
+                style="width: 194px;height: 25px;">
+                    <option>Select</option>
+                    <option>Inprogress</option>
+                    <option>Comp</option>
+                </select>
+                <button class="btn btn-success" type="submit" (click)="onSubmit()"
+                    style="width: 100px;text-align: center;margin-left: 25px;">Submit</button>
+                <!-- <button class="btn btn-info" (click) = "reloadpage()" style="width: 100px;text-align: center;margin-left: 25px;">Reset</button> -->
+            </div>
+        </form>
+    </div>
+</div>

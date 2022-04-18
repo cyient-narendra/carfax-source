@@ -1,0 +1,101 @@
+/* table{
+  border-collapse: collapse;
+}
+.table thead th {
+  color: #401500;
+  background-color: #e4eefa;
+  border-color: #792700;
+} */
+#required-field::after {
+    content: "*";
+    color: red;
+    margin-left:2px;   
+  }
+  label {
+    display: inline-block;
+    justify-content: flex-start;
+      width: 105px;
+      text-align: left;
+      margin: 10px;
+    clear:left;
+  }  
+  legend{
+    font-weight: bold;  
+  }
+  #myTable {
+    font-family: Arial, Helvetica, sans-serif;
+    }
+  
+  #myTable thead {
+    position: sticky;
+    top: 0;
+  }
+  
+  #myTable thead th {
+    border: 1px solid #e4eff8;
+    background: white;
+    cursor: pointer;
+  }
+  
+  #myTable thead th.header-label {
+    cursor: pointer;
+    background: linear-gradient(0deg, #e4eff8, #4578a2 5%, #e4eff8 150%);
+    color: white;
+    border: 1px solid white;
+  }
+  .cartd {
+    width: 150px;
+  }
+  :host /deep/ ng2-smart-table thead > tr > th  { 
+    background: linear-gradient(0deg, #e4eff8, #4578a2 5%, #e4eff8 150%);  
+  }
+  :host /deep/ ng2-smart-table-title a{
+    color:white !important; 
+  } 
+  :host ::ng-deep .green{
+    background-color:lightgreen;
+    color: rgb(27, 25, 25);
+ }
+ :host ::ng-deep .yellow{
+  background-color:lightyellow;
+  color: rgb(27, 25, 25);
+}
+  .table {
+    font-family: Arial, Helvetica, sans-serif;
+  }
+  
+  .table thead {
+    position: sticky;
+    top: 0;
+  }
+  #table {
+    display: flex;
+    flex-direction: column
+  }
+  
+  .table thead th {
+    border: 1px solid #e4eff8;
+    background: white;
+    cursor: pointer;
+  }
+  
+  .table thead th.header-label {
+    cursor: pointer;
+    background: linear-gradient(0deg, #e4eff8, #4578a2 5%, #e4eff8 150%);
+    color: white;
+    border: 1px solid white;
+  }
+  input[type=text]{
+    text-transform: uppercase;
+    height: 23px;
+  }
+  :host /deep/ ng2-smart-table tbody > tr:first-child > td:first-child {
+        color: red;
+    }
+    .green{
+      background-color: green;
+    }
+    .yellow{
+      background-color: lightgoldenrodyellow;
+    }      
+

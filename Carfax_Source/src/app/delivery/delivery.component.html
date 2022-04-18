@@ -1,0 +1,49 @@
+<div class="w-100 card p-1 mt-1">
+    <!-- <h5>Work Allocation</h5> -->
+    <div class="row col-12 col-lg-12 col-md-12">
+        <div class="col-2 col-lg-2 col-md-2" id="test">
+            <div class="card" id="card" >
+                    <form>
+                        <label for="metro">
+                            <input class="form-check-input"  #mySelect type="radio" name="radmet" id="metro" style="margin: 8px;" [(ngModel)]="metro" value="Metro" 
+                            (change)="onItemChange(mySelect.value)">Metro</label>
+                        <label for="nonmetro">
+                            <input class="form-check-input" #Select type="radio" name="radmet" id="nonmetro" style="margin: 8px;" [(ngModel)]="nonmetro" value="Non-METRO"  
+                            (change)="onItemChange(Select.value)">Non-Metro</label>
+                    </form>
+            </div>
+        </div>
+        <div class="col-4 col-lg-2 col-md-3" >
+            <div class="card" id="card3">
+                    <form #ngForm >
+                        <label for="recdfrom">
+                            Received Date From <input type="date" name="recdfrom" id="recdfrom" style="margin: 8px;" [(ngModel)]="form.recdfrom"
+                            ></label>
+                            <label for="recdfrom">
+                                Received Date To  <input type="date" name="recdto" id="recdto" style="margin: 8px;margin-left: 30px;" [(ngModel)]="form.recdto"
+                                ></label>
+                        <!-- <label for="shift" style="margin: 2px;">Received Date
+                            <select #selectDate (change)="onDateChange(selectDate.value)">
+                                <option>Select</option>
+                                <option *ngFor = "let d of dateofDelivery">{{d.Receiveddelivery}}</option>                            
+                            </select></label> -->
+                    </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2" style="margin-left: 100px;">
+            <div class="card" id="card4">
+                    <form #ngForm style="margin: 3px;">
+                        <button class="btn btn-info" type="submit" (click)="getFiles()">Search</button>
+                        <button class="btn btn-info" type="submit" (click)="xmlexport()" style="margin:3px">XML Export</button>
+                    </form>
+            </div>
+        </div>
+    </div>    
+</div>
+<div class="w-100 card p-1 mt-1">
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf = "showMetro">
+        <ng2-smart-table [settings]="settings" [source]="files" (userRowSelect)="onUserRowSelect($event)" ></ng2-smart-table>
+        <span style="float: left;">Total Records = {{this.filescount}}</span>
+    </div>
+</div>
+

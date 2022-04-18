@@ -1,0 +1,173 @@
+<div class="w-100 card p-1 mt-1">
+    <!-- <h5>Work Allocation</h5> -->
+    <div class="row col-12 col-lg-12 col-md-12">
+        <div class="col-2 col-lg-2 col-md-2" id="test">
+            <div class="card" id="card">
+                <form>
+                    Data Type <select #mySelect (change)="selectChange(mySelect.value)">
+                        <option>Select</option>
+                        <option>Received</option>
+                        <option>DC</option>
+                        <option>QC</option>
+                        <option>QA</option>
+                        <option>Shipment</option>
+                    </select>
+                </form>
+            </div>
+            <div class="card" id="card">
+                <form>
+                    TL <select #tlselect (change)="ChangeValue(tlselect.value)">
+                        <option [value]="0">Select</option>
+                        <option *ngFor="let t of tlName;">{{t.TL}}</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2" style="width: 290px;height: 100px;">
+            <div class="card">
+                <form style="height: 45px;">
+                    <label for="datefrom">From
+                        <input id="datefrom" type="date" [(ngModel)]="form.recdfromdate" name="recdfromdate"
+                            style="margin-left: 10px;">
+                    </label>
+                </form>
+            </div>
+            <div style="clear: both;padding: 5px;"></div>
+            <div class="card" id="card">
+                <form style="height: 40px;">
+                    <label for="dateto">To
+                        <input id="dateto" type="date" [(ngModel)]="form.recdtodate" name="recdtodate"
+                            style="margin-left: 31px;">
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card">
+                <form>
+                    <label>Service <select #myserviceSelect (change)="serviceSelect(myserviceSelect.value)"
+                            style="width: 120px;">
+                            <option>Select</option>
+                            <option *ngFor="let s of service">{{s.Region}}</option>
+                        </select></label>
+                    <label>State <select #selectState (change)="stateSelect(selectState.value)"
+                            style="width: 120px;margin-left: 25px;">
+                            <option>Select</option>
+                            <option>ALL</option>
+                            <option *ngFor="let st of state">{{st.Statename}}</option>
+                        </select></label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card">
+                <form>
+                    <label for="metro">
+                        <input class="form-check-input" #mSelect type="radio" name="radmet" id="metro"
+                            [(ngModel)]="metro" value="METRO" (change)="onItemChange(mSelect.value)"
+                            style="margin: 8px;">METRO</label>
+                    <label for="nonmetro">
+                        <input class="form-check-input" #Select type="radio" name="radmet" id="nonmetro"
+                            [(ngModel)]="nonmetro" value="Non-METRO" (change)="onItemChange(Select.value)"
+                            style="margin: 8px;">Non-METRO</label>
+                </form>
+            </div>
+            <div style="clear: both;padding: 5px;"></div>
+            <div class="card">
+                <form>
+                    <label> DC
+                        <select #dcname (change)="dcSelect(dcname.value)" *ngIf="show">
+                            <option [value]="0">select</option>
+                            <option *ngFor="let d of name">{{d.Username}}</option>
+                        </select></label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2" style="height: 20px;width: 180px !important;">
+            <div class="card">
+                <form>
+                    <label for="qc">QC
+                        <select #qcname (change)="qcSelect(qcname.value)" *ngIf="qc">
+                            <option value="0">select</option>
+                            <option *ngFor="let d of qcnames">{{d.Username}}</option>
+                        </select></label>
+                    <label for="qa">QA
+                        <select #qaname (change)="qaSelect(qaname.value)" *ngIf="qa">
+                            <option value="0">select</option>
+                            <option *ngFor="let d of qanames">{{d.Username}}</option>
+                        </select></label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2" style="width: 220px !important;">
+            <div class="card">
+                <form>
+                    <label> Step Type <select #stepSelect (change)="selectStep(stepSelect.value)">
+                            <option>Select</option>
+                            <option>YTS</option>
+                            <option>Inventory</option>
+                            <option>Data Entry</option>
+                            <option>QC</option>
+                            <option>QA</option>
+                            <option>Shipment</option>
+                        </select></label>                   
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-100 card p-1 mt-1">
+    <div class="row col-12 col-lg-12 col-md-12">
+        <div class="col-2 col-lg-2 col-md-2" id="test">
+            <div class="card" id="card">
+                <form>
+                    <label for="qa">User
+                        <select #user (change)="userSelect(user.value)" style="margin-left: 70px;" *ngIf = "showuser">
+                            <option value="0">select</option>
+                            <option *ngFor="let d of name">{{d.Username}}</option>
+                        </select></label>
+                    <label for="hours">Total Time(Hrs)
+                        <input type="text" name="timehrs" [(ngModel)]="form.timehrs" style="width: 90px;" *ngIf = "showuser"></label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2" id="test">
+            <div class="card" id="card">
+                <form>
+                    <label for="shipment">Shipment
+                        <select #user (change)="userSelect(user.value)" *ngIf = "showshipment">
+                            <option value="0">select</option>
+                            <option *ngFor="let d of name">{{d.Username}}</option>
+                        </select></label>
+                    <label for="hours">Ship Time
+                        <input type="text" name="shiptime" [(ngModel)]="form.shiptime" style="width: 100px;" *ngIf = "showshipment"></label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2" id="test">
+            <div class="card" id="card">
+                <!-- <form>
+                    <button class="btn btn-success" style="margin: 5px;">Ship Count</button>
+                    <button class="btn btn-success" style="margin: 5px;">Report</button>
+                </form> -->
+                <form>
+                    <button class="btn btn-success" (click)="getData()">Get Data</button>
+                    <button class="btn btn-success" (click)="misSync()" style="margin: 5px;">MIS Sync</button>
+                </form>
+            </div>
+        </div>
+        <!-- <div class="col-2 col-lg-2 col-md-2" id="test">
+            <div class="card" id="card">
+                <form>
+                    <button class="btn btn-success" (click)="getData()">Get Data</button>
+                    <button class="btn btn-success" (click)="misSync()" style="margin: 5px;">MIS Sync</button>
+                </form>
+            </div>
+        </div> -->
+    </div>
+</div>
+<div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf="showmis">
+    <ng2-smart-table [settings]="missettings" [source]="misdata" (userRowSelect)="onUserRowSelect($event)"
+        style="overflow-x: scroll;"></ng2-smart-table>
+    <span style="float: left;">Total Records = {{this.mislength}} </span>
+</div>

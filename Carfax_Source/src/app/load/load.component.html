@@ -1,0 +1,26 @@
+<div class="w-200 card p-1 mt-3" style="margin:10px ;">
+    <fieldset>
+        <h4 >Data Upload</h4>
+    </fieldset>
+    <form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">
+        <label>Received Date</label>
+        <input type="date" id="date" formControlName ="recdate" style="width: 200px;"><br>
+        <mat-dialog-content>
+            <label style="background-color: #1aa2dc;margin-top: 10px;width: 310px;">
+                <input type="file" class = "btn btn-sm float-left" id="customFile" name="myfile"
+                            (change)="onFileSelect($event)" #UploadFileInput>
+            </label>
+        </mat-dialog-content>
+        <mat-dialog-content>
+            <button type="submit" style="background-color: #1aa2dc;color: #ffff;margin: 12px;">Upload</button>
+        </mat-dialog-content>
+        <div class="success-msg" *ngIf="showMsg" style="top: 400px;text-align: left;width: 330px;">
+            <i class="fa fa-check"></i>
+            Successfully Uploaded
+        </div>
+        <div class="success-msg" *ngIf="error" style="top: 400px;text-align: left;width: 330px;">
+            <i class="fa fa-check"></i>
+            Error
+        </div>
+    </form>
+</div>

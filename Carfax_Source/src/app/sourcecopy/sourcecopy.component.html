@@ -1,0 +1,39 @@
+<!-- <div class="w-200 card p-1 mt-3" style="margin:10px ;">
+    <fieldset>
+        <h4 >Source Copy</h4>
+    </fieldset>
+    <form [formGroup]="fileUploadForm" (ngSubmit)="onFormSubmit()">        
+        <mat-dialog-content>
+            <label class="btn btn-default btn-file"
+                style="background-color: #0099a8;color: #ffff;margin: 12px;">
+                <input type="file" class="custom-file-input" id="customFile" name="myfile"
+                            (change)="onFileSelect($event)" #UploadFileInput>
+            </label>
+        </mat-dialog-content>
+        <mat-dialog-content>
+            <button type="submit" style="background-color: #0099a8;color: #ffff;margin: 12px;">Copy</button>
+        </mat-dialog-content>
+        <div class="success-msg" *ngIf="showMsg" style="top: 400px;text-align: left;width: 330px;">
+            <i class="fa fa-check"></i>
+            Successfully Copied
+        </div>
+        <div class="success-msg" *ngIf="error" style="top: 400px;text-align: left;width: 330px;">
+            <i class="fa fa-check"></i>
+            Error
+        </div>
+    </form>
+</div> -->
+
+<div class="w-200 card p-1 mt-3" style="margin:5px ;width: 500px;height: 250px;">
+    <fieldset>
+        <h4 >File Copy</h4>
+    </fieldset>
+    
+        <label for="source" class="form-inline" style="text-justify: initial;"> Source Folder:
+       <input type="text" class="form-inline" id="source" style="margin-right: 12px;margin-left: 35px;">
+       <input type="file" class="form-inline" id="source"></label><br>    
+       <label for="destination" style="text-justify: initial;">Destination Folder:<input type="text" id="destination" style="margin-right: 12px;margin-left: 7px;"><input type="file" id="destination"></label><br>
+       <label for="excel" style="text-justify: initial;">File Names Excel:<input type="text" id="excel" style="margin-right: 12px;margin-left: 17px;"><input type="file" id="excel"></label><br>
+       <button class="btn" style="width: 250px;text-align: center;margin-left: 110px;background-color: #0099a8;color: #fff;">Start</button>
+    
+</div>

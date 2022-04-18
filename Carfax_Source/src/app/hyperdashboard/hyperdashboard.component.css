@@ -1,0 +1,61 @@
+
+.card {
+    border: 1px solid #dadada;
+    box-shadow: 4px 4px 8px 0 rgba(0, 0, 0, 0.2);
+    transition: 0.2s;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #dadada;  
+  }
+  .card:hover {
+    box-shadow: 8px 8px 16px 0 rgba(0, 0, 0, 0.2);
+  }
+  
+  .card .container {
+    display: flex;
+    flex: 1;
+    height: 100%;
+    flex-direction: column;
+    padding: 2px 14px;
+  }
+  #test {
+    display: flex;
+    flex-direction: column;
+  }
+  #test2 {
+    display: flex;
+    flex-direction: row;
+  }
+  #card3{
+    left: 10px;
+    width: 350px;  
+    
+  }
+  #card4{
+    left: 10px;
+    width: 200px;
+    margin-left: 46px;
+    flex-direction: column;  
+  }
+  
+  select {
+    margin: 10px;
+    width: 90px;   
+   
+  }
+  :host /deep/ ng2-smart-table thead > tr > th  { 
+    background: linear-gradient(0deg, #e4eff8, #61a9e4 5%, #e4eff8 150%);  
+  }
+  :host /deep/ .ng2-smart-action-multiple-select{
+    text-align: center;
+    }
+    
+    :host /deep/ .ng2-smart-action-multiple-select > input{
+    width:15px;
+    height:15px;
+    display:-ms-flexbox;
+    }
+    
+  
+  

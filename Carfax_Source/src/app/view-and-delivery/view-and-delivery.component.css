@@ -1,0 +1,74 @@
+.typeRadio{
+    position: relative;
+    top: -1px;
+}
+.mandatory{
+  color: red;
+  margin-left: 5px;
+}
+.divLeft{
+    margin-left: 20px;
+}
+.ddlsize{
+    width: 230px !important;
+  }
+  .errormessage{
+    color: red;
+    font-size: 12px;
+  }
+  .btnsave{
+    height: 32px;
+    padding: 5px 28px;
+    background: #41c141;
+    color: white;
+    width: 150px;
+    border:none;
+    border-radius: 2px;
+    cursor: pointer !important;
+  }
+  .tblheading{
+    width: 100%;
+    background: #0099a8;
+    color: white;
+    text-align: center;
+    position:sticky !important;
+   top:0;
+}
+
+.fixTableHead {
+    overflow-y: auto;
+    height: 400px;
+  }
+  .fixTableHead thead th {
+    position: sticky !important;
+    top: 0;
+  }
+  table {
+    border-collapse: collapse;        
+    width: 100%;
+  }
+  .total{
+    width: auto;
+      background: #ff8c00;
+      padding: 0px 2px;
+      border-radius: 3px;
+      color: #fff;
+  }
+
+  .fixTableHead::-webkit-scrollbar-track
+{
+	-webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+	background-color: #F5F5F5;
+}
+
+.fixTableHead::-webkit-scrollbar
+{
+	width: 10px;
+	background-color: #F5F5F5;
+}
+
+.fixTableHead::-webkit-scrollbar-thumb
+{
+	background-color: #000000;
+	border: 2px solid #555555;
+}

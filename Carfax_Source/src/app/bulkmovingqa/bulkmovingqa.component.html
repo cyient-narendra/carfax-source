@@ -1,0 +1,58 @@
+<div class="w-100 card p-1 mt-1">
+    <div class="row col-12 col-lg-12 col-md-12">
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card" >
+                <form>
+                    <label for="metro">
+                        <input class="form-check-input" #mySelect type="radio" name="radmet" id="metro"
+                            style="margin: 8px;" [(ngModel)]="metro" value="Metro"
+                            (click)="onItemChange(mySelect.value)">Metro</label>
+                    <label for="nonmetro">
+                        <input class="form-check-input" #Select type="radio" name="radmet" id="nonmetro"
+                            style="margin: 8px;" [(ngModel)]="nonmetro" value="Non-METRO"
+                            (click)="onItemChange(Select.value)">Non-Metro</label>
+                </form>
+            </div>
+        </div><br>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card" >
+                <form>                    
+                    <label for="qa">
+                        <input class="form-check-input" type="radio" name="radmet1" id="qa"
+                            style="margin: 8px;">QA</label>                   
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card">
+                <form>
+                    <label for="state" style="margin-left: 20px;">State
+                        <select #stateSelect (change)="onStateChange(stateSelect.value)">
+                            <option>Select</option>                            
+                            <option *ngFor="let s of state">{{s.State}}</option>
+                        </select>
+                    </label>
+                    <label for="Agency" style="margin-left: 5px;">Agency
+                        <select #agencySelect (change)="onAgencyChange(agencySelect.value)">
+                            <option>Select</option>
+                            <option>ALL</option>
+                            <option *ngFor="let a of agency">{{a.agency_ori}}</option>
+                        </select>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card" style="height: 90px;width: 90px !important;">
+                <button class="btn btn-info" style="margin: 4px;">Search</button>
+                <button class="btn btn-info" style="margin: 4px;">Export</button>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-200 card p-1 mt-1" >
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;overflow-x: scroll;" >
+        <ng2-smart-table [settings]="Settings"></ng2-smart-table>
+        <span style="float: left;">Total Records =  </span>
+    </div>
+</div>

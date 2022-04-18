@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+body, html {
+    height: 100%;
+    margin: 0;
+  }
+  ng2-smart-table table tr.selected {
+    background-color: lightblue !important;
+    }
+    .mat-dialog-container {
+      border-radius: 20px !important;
+    }
+
+    

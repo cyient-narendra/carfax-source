@@ -1,0 +1,154 @@
+<div class="card p-4">
+<div>
+    <form #useraccForm = "ngForm" (ngSubmit)="Getdata()">
+        <div class="d-flex">
+   <div>From: <input type="date" name="from" [(ngModel)]="from" class="textboxsize"  #From="ngModel" required> 
+    <div class="errormessage" style="margin-left: 13%;">
+        <div *ngIf="From.touched && From.invalid" class="errormessage">Please Select From Date</div>
+    </div>
+</div> 
+<div>To: <input type="date" name="to" [(ngModel)]="to" class="textboxsize"  #To="ngModel" (change)="checkDates()" required> 
+    <div class="errormessage" style="margin-left: 13%;">
+        <div *ngIf="To.touched && To.invalid" class="errormessage">Please Select To Date</div>
+    </div>
+</div> 
+   <div class="btnalign"><input type="submit" value="Get" class="btn btnsave" [disabled]="!useraccForm.valid"></div>
+   <div (click)="exportAsXLSX()" class="btnalign"><input type="button" value="Export" class="btn btnsave" ></div>
+</div>
+</form>
+</div>
+<div class="mt-2" *ngIf="showGrid">
+    <div class="d-flex justify-content-between">
+    <div>Filter: <input type="text" class="textboxsize" [(ngModel)]="filterTerm" ></div>
+    <div>Total Records: <span class="total"> {{userAccData.length}}</span></div>
+</div>
+    <div class="mt-1">
+        <div class="fixTableHead">
+    <table id="tbluser" class="w-100 table table-bordered">
+        <thead class="tblheading">
+        <tr>
+            <th>Emp Id</th>
+            <th>Emp Name</th>
+            <th>Associate Name</th>
+            <th>TL</th>
+            <th>DC Count</th>
+            <th>DC Time</th>
+            <th>QC Count</th>
+            <th>QC Time</th>
+            <th>QA Count</th>
+            <th>QA Time</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody >
+      
+        <tr *ngFor="let item of userAccData | filter: filterTerm">
+            <td>{{item.Emp_Id}}</td>
+            <td >{{item.Emp_Name}}</td>
+            <td>{{item.Associate_name}}</td>
+            <td>{{item.TL}}</td>
+            <td>{{item.DC_Count}}</td>
+            <td ><div style="cursor: pointer;" (click)="GettimeUser('DC');" >{{item.DC_Time}}</div></td>
+            <td>{{item.QC_Count}}</td>
+            <td><div style="cursor: pointer;" (click)="GettimeUser('QC');" >{{item.QC_Time}}</div></td>
+            <td>{{item.QA_Count}}</td>
+            <td><div style="cursor: pointer;" (click)="GettimeUser('QA');" >{{item.QA_Time}}</div></td>
+            <td>{{item.Total}}</td>
+        </tr>
+        <tr *ngIf="userAccData.length==0">
+            <td colspan="11"><div style="text-align: center;color: red;">No Records are avaliable for selected date..!!</div></td>
+        </tr>
+    </tbody>
+    </table>
+</div>
+</div>
+</div>
+</div>
+
+<!--Time Spent Large modal -->
+<div class="modal" id="timeSpentModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [ngStyle]="{'display': popupDisplay}">
+    <div class="modal-dialog modal-lg modal-xl">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title heading" >Time Sheet</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopup()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body" *ngIf="gridpnl">
+                <div class="d-flex">
+                    <div><b>State</b> : <input type="text" class="textboxsize" [(ngModel)]="stateSearch"></div>
+                    <div (click)="Searchbystate()"><button class="btnsave" style="margin-left: 5px; width: 100%;">Go</button></div>
+                    <div style="margin-left: 8px;"><b>Time</b> : <input type="text" class="textboxsize" [(ngModel)]="time"></div>
+                    <div class="btnalign"><button [ngClass]="{'btnDisable': Isdisable}" class="btnsave" (click)="UpadteAll()">Update All</button></div>
+                    <div class="btnalign"><button class="btnsave" (click)="exportAsXLSXForTimeSheet()">Export</button></div>
+                </div>
+              <div class="mt-1">
+                <div class="d-flex justify-content-end">Total Records: <span class="total"> {{timeByUserData.length}}</span></div>
+                <div class="fixTableHead">
+                <table class="w-100 table table-bordered">
+                    <thead class="tblheading">
+                    <tr>
+                        <th>Date</th>
+                        <th>Name</th>
+                        <th>State</th>
+                        <th>Map</th>
+                        <th>Step</th>
+                        <th>Time</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr *ngFor="let item of timeByUserData;">
+                        <td>{{item.Date}}</td>
+                        <td>{{item.UName}}</td>
+                        <td>{{item.State}}</td>
+                        <td>{{item.Map}}</td>
+                        <td>{{item.Step}}</td>
+                        <td>{{item.Time}}</td>
+                        <td><div style="cursor: pointer;" (click)="editrecord(item)"><img src="assets/img/editicon.png" width="25px"></div></td>
+                    </tr>
+                   <tr *ngIf="timeByUserData.length==0">
+                        <td colspan="6"><div style="text-align: center;color: red;">No Records are avaliable </div></td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+              </div>
+          </div>
+          <div *ngIf="editpnl" class="card p-4">
+              <table>
+                  <tr>
+                      <td>Date</td>
+                      <td>:</td>
+                      <td>{{editform.Date}}</td>
+                  </tr>
+                  <tr>
+                    <td>User Name</td>
+                    <td>:</td>
+                    <td>{{editform.UName}}</td>
+                </tr>
+                <tr>
+                    <td>State</td> <td>:</td>
+                    <td>{{editform.State}}</td>
+                </tr>
+                <tr>
+                    <td>Map</td> <td>:</td>
+                    <td>{{editform.Map}}</td>
+                </tr>
+                <tr>
+                    <td>Step</td> <td>:</td>
+                    <td>{{editform.Step}}</td>
+                </tr>
+                <tr>
+                    <td>Time</td> <td>:</td>
+                    <td><input type="text" class="textboxsize" [(ngModel)]="editform.Time"></td>
+                </tr>
+                <tr>
+                    <td colspan="2" style="text-align: center;" ><input type="button" (click)="update()" class="btnsave mb-3" value="Update"></td>
+                </tr>
+              </table>
+          </div>
+      </div>
+    </div>
+  </div>

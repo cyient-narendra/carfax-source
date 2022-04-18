@@ -1,0 +1,7 @@
+input[type="file"] {
+    width: 100px;
+}
+.Column {
+    display: inline;
+    background-color: red;
+  }

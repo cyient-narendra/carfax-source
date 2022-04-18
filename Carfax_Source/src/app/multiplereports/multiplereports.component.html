@@ -1,0 +1,128 @@
+<div class="w-100 card p-1 mt-1">
+    <div class="row col-12 col-lg-12 col-md-12">
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card" style="width: 233px;">
+                <form>
+                    <label for="metro">
+                        <input class="form-check-input" #mySelect type="radio" name="radmet" id="metro"
+                            style="margin: 8px;" [(ngModel)]="metro" value="Metro"
+                            (click)="onItemChange(mySelect.value)">Metro</label>
+                    <label for="nonmetro">
+                        <input class="form-check-input" #Select type="radio" name="radmet" id="nonmetro"
+                            style="margin: 8px;" [(ngModel)]="nonmetro" value="Non-METRO"
+                            (click)="onItemChange(Select.value)">Non-Metro</label>
+                </form>
+            </div>
+            <div class="card" style="width: 233px;">
+                <form>
+                    <label for="datefrom">From
+                        <input id="datefrom" type="date" [(ngModel)]="form.recdfromdate" name="recdfromdate"
+                            style="margin: 3px;margin-left: 15px;">
+                    </label>
+                    <label for="dateto">To
+                        <input id="dateto" type="date" [(ngModel)]="form.recdtodate" name="recdtodate"
+                            style="margin: 3px;margin-left: 35px;">
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2" style="margin-left: 12px !important;">
+            <div class="card">
+                <form style="height: 100px;">
+                    <label for="ecommerce" style="margin-left: 20px;">Commerce Type
+                        <select #commerceSelect (change)="changeCommerce(commerceSelect.value)">
+                            <option>Select</option>
+                            <option>Ecommerce</option>
+                            <option>Non-Ecommerce</option>
+                        </select>
+                    </label>                    
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card">
+                <form style="height: 100px;">
+                    <label for="state" style="margin-left: 20px;">State
+                        <select #stateSelect (change)="onStateChange(stateSelect.value)">
+                            <option>Select</option>
+                            <option>ALL</option>
+                            <option *ngFor="let s of state">{{s.State}}</option>
+                        </select>
+                    </label>
+                    <label for="Agency" style="margin-left: 5px;">Agency
+                        <select #agencySelect (change)="onAgencyChange(agencySelect.value)">
+                            <option>Select</option>                            
+                            <option *ngFor="let a of agency">{{a.agency_ori}}</option>
+                        </select>
+                    </label>
+                </form>
+            </div>
+        </div>
+        <!-- <div class="card" style="height: 102px;width: 100px;margin: 0px;padding:0px">
+                <button class="btn btn-info" style="height: 100px;width: 100px;margin: 0px;">Get Data</button>
+            </div> -->
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card">
+                <form style="height: 100px;">
+                    <label for="allotments">
+                        <input class="form-check-input" type="radio" name="rad1" id="allotments"
+                            (click)="getCurrentAllotments()" style="margin: 8px;">Current Allotments
+                    </label>
+                    <label for="overview">
+                        <input class="form-check-input" type="radio" name="rad1" id="overview" (click)="getOverview()"
+                            style="margin: 8px;">Overview
+                    </label>
+                    <label for="completedcount">
+                        <input class="form-check-input" type="radio" name="rad1" id="completedcount"
+                            (click)="getCompletedCount()" style="margin: 8px;">Completed Count
+                    </label>
+                </form>
+            </div>
+        </div>
+        <div class="col-2 col-lg-2 col-md-2">
+            <div class="card" style="width: 255px !important">
+                <form style="height: 100px;">
+                    <!-- <label for="unitcost">
+                        <input class="form-check-input" type="radio" name="rad1" id="unitcost" style="margin: 8px;">Unit
+                        Cost
+                    </label> -->
+                    <label for="agencywise">
+                        <input class="form-check-input" type="radio" name="rad1" id="agencywise"
+                            (click)="getAgencyWise()" style="margin: 8px;">AgencyWise Completed Status
+                    </label>
+                    <label for="rejectedfiles">
+                        <input class="form-check-input" type="radio" name="rad1" id="rejectedfiles"
+                            (click)="getRejectedFiles()" style="margin: 8px;">Rejected Files
+                    </label>
+                    <select class="form-group" #mySelectOption (change)="onChangeSelect(mySelectOption.value)">
+                        <option>Select</option>
+                        <option>Rejected Count</option>
+                        <option>Pending Rejections</option>
+                    </select>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="w-200 card p-1 mt-1" style="width: 970px;">
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;overflow-x: scroll;" *ngIf="showcurrent">
+        <ng2-smart-table [settings]="currentAllotmentSettings" [source]="currentAllotment"></ng2-smart-table>
+        <span style="float: left;">Total Records = {{this.allotlength}} </span>
+    </div>
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;overflow-x: scroll;" *ngIf="showoverview">
+        <ng2-smart-table [settings]="overview" [source]="overviewData"></ng2-smart-table>
+        <span style="float: left;">Total Records = {{this.overviewlength}} </span>
+    </div>
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;overflow-x: scroll;" *ngIf="showcomplete">
+        <ng2-smart-table [settings]="completed" [source]="completedCount"></ng2-smart-table>
+        <span style="float: left;">Total Records = {{completedRecordLength}}</span>
+    </div>
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;overflow-x: scroll;" *ngIf="showagency">
+        <ng2-smart-table [settings]="agencysettings" [source]="agencyWise"></ng2-smart-table>
+        <span style="float: left;">Total Records = {{agencyWiseLength}}</span>
+    </div>
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf="showrejectedfiles">
+        <ng2-smart-table [settings]="rejectsettings" [source]="rejectedFile"></ng2-smart-table>
+        <span style="float: left;">Total Records = {{rejeclength}}</span>
+    </div>
+</div>

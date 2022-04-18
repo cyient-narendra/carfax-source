@@ -1,0 +1,141 @@
+<div class="wrapper">
+    <!-- Sidebar  -->
+    <nav id="sidebar">
+        <div class="sidebar-header">
+            <h3 style="font-size:2.5vw">CYIENT</h3>
+            <strong style="font-size:1.25vw">CYIENT</strong>
+        </div>
+        <ul class="list-unstyled components">            
+            <!-- <li class="active">
+                <a href="#homeSubmenu" data-bs-toggle="collapse" class="nav-link px-1 align-middle">
+                    <i class="fas fa-list"></i> File                    
+                </a>
+                <ul class="collapse list-unstyled" id="homeSubmenu">
+                    <li>
+                        <a href="/uploaddata" class="nav-link" routerLink="uploaddata" routerLinkActive="active">
+                            Upload Data
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/workallotment" class="nav-link" routerLink="workallotment" routerLinkActive="active">
+                            Work Allotment
+                        </a>
+                    </li>
+                    </ul>
+                </li> -->
+                <li *ngIf = "role == 'false'">
+                    <a href="/userboard" class="nav-link" routerLink="userboard" routerLinkActive="active" active-link="active" >
+                        User Home
+                    </a>
+                </li>              
+                <li *ngIf = "role == 'false'">
+                        <a href="/dataentry" class="nav-link" routerLink="dataentry" routerLinkActive="active" active-link="active" >
+                            Data Analysis
+                        </a>
+                    </li>
+                    <li *ngIf = "role == 'false'">
+                        <a href="/hyperdata" class="nav-link" routerLink="hyperdata" routerLinkActive="active" active-link="active">
+                            HyperData Review
+                        </a>
+                    </li>
+                    <li *ngIf = "role == 'true'">
+                        <a href="/uploaddata" class="nav-link" routerLink="uploaddata" routerLinkActive="active" active-link="active">
+                            Upload Data
+                        </a>
+                    </li> 
+                    <li *ngIf = "role == 'true'">
+                        <a href="/workallotment" class="nav-link" routerLink="workallotment" routerLinkActive="active" active-link="active">
+                            Work Allotment
+                        </a>
+                    </li>                     
+                    <li *ngIf = "role == 'true'">
+                        <a href="/bulkallotment" class="nav-link" routerLink="bulkallotment" routerLinkActive="active" active-link="active">
+                            Bulk Allotment
+                        </a>
+                    </li>
+                    <!-- <li *ngIf = "role == 'true'">
+                        <a href="/delivery" class="nav-link" routerLink="delivery" routerLinkActive="active" active-link="active">
+                            XML Export
+                        </a>
+                    </li>  -->
+                    <li *ngIf = "role == 'true'">
+                        <a href="/missync" class="nav-link" routerLink="missync" routerLinkActive="active" active-link="active">
+                           MIS Sync
+                        </a>
+                    </li>
+                    <li *ngIf = "role == 'true'">
+                        <a href="/dashboard" class="nav-link" routerLink="dashboard" routerLinkActive="active" active-link="active">
+                           Dashboard
+                        </a>
+                    </li>
+                    <li *ngIf = "role == 'true'">
+                        <a href="/multiple" class="nav-link" routerLink="multiple" routerLinkActive="active" active-link="active">
+                          Multiple Reports
+                        </a>
+                    </li>
+                    <li *ngIf = "role == 'true'">
+                        <a href="/bulkmovingqa" class="nav-link" routerLink="bulkmovingqa" routerLinkActive="active" active-link="active">
+                          BulkMove_Shipment
+                        </a>
+                    </li> 
+                    <li *ngIf = "role == 'true'">
+                        <a href="/hyperdashboard" class="nav-link" routerLink="hyperdashboard" routerLinkActive="active" active-link="active">
+                          Hyper Dashboard
+                        </a>
+                    </li> 
+                    <li *ngIf = "role == 'true'">
+                        <a href="/ViewAndDelivery" class="nav-link" routerLink="ViewAndDelivery" routerLinkActive="active" active-link="active">
+                          View And Delivery
+                        </a>
+                    </li>                           
+                    <li *ngIf = "role == 'false'">
+                        <a href="/SelfAllotment" class="nav-link" routerLink="SelfAllotment" routerLinkActive="active" active-link="active">
+                            Self Allotment
+                        </a>
+                    </li>
+                    <li *ngIf = "role == 'true'">
+                        <a href="/UserAccountbility" class="nav-link" routerLink="UserAccountbility" routerLinkActive="active" active-link="active">
+                            User Accountbility
+                        </a>
+                    </li>
+            <!-- <li>                
+                <a href="#pageSubmenu" data-bs-toggle="collapse" class="nav-link px-1 align-middle">
+                    <i class="fas fa-copy"></i> Reports
+                </a>
+                <ul class="collapse list-unstyled" id="pageSubmenu">
+                <li><a class="dropdown-item">View And Delivery</a></li>
+                <li><a class="dropdown-item">Dashboard</a></li>
+                <li><a class="dropdown-item">Associate Credentials</a></li>
+                <li><a class="dropdown-item">Modifications</a></li>
+                <li><a class="dropdown-item">Reports</a></li>
+                <li><a class="dropdown-item">Error Validation</a></li>
+                <li><a class="dropdown-item">State And Region</a></li>
+                <li><a class="dropdown-item">State Status Report</a></li>
+                <li><a class="dropdown-item">User Working Details</a></li>
+                <li><a class="dropdown-item">Hourly Production Details</a></li>
+                </ul>
+            </li> -->
+        </ul>
+    </nav>
+    <!-- Page Content  -->
+    <div id="content">
+        <nav class="navbar navbar-expand-lg " style="background-color: #0099a8;color: #fff;height: 40px;" >
+            <div class="container-fluid">
+                <button type="button" id="sidebarCollapse" class="btn" title="Carfax" style="color:  #fff;height: 40px">
+                    <h3>CARFAX DATA</h3>
+                </button>               
+            <div class="btn-group dropstart">
+                <button type="button" class="btn " data-bs-toggle="dropdown" aria-expanded="false" style="background-color: #0099a8;color: #fff;">
+                    <span class="fa fa-th-list"></span>
+                </button>
+                <strong  style="color: #ffff;margin: 5px;">{{this.name}} ({{this.rolename}})</strong>                
+                <ul class="dropdown-menu">                  
+                  <li><a class="dropdown-item" (click)="changePassword()">Change Password</a></li>
+                  <li><a class="dropdown-item" (click)="CloseWindow()">Signout</a></li>                  
+                </ul>
+              </div>
+            </div>
+        </nav>               
+        <router-outlet></router-outlet>
+    </div>
+</div>

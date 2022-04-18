@@ -1,0 +1,304 @@
+<div class="w-100 card p-1 mt-1">
+    <!-- <h5>Work Allocation</h5> -->
+    
+    <div class="row w-100">
+        <div class="w-25" id="test">
+            <div class="card p-2" id="card">
+                <!-- <h5 class="card-title">Allotment Type</h5> -->
+                <!-- <form>
+                    <label for="new">
+                        <input type="radio" name="new" id="new" class="form-check-input" #allotSelect  [(ngModel)]="new" value="new"  
+                        (change)="onTypeChange(allotSelect.value)" style="margin: 10px;">New</label>
+                    <label for="modify">
+                        <input type="radio" name="new" id="modify" style="margin: 10px;" class="form-check-input" #allotSelect2  [(ngModel)]="modify" value="modify"  
+                        (change)="onTypeChange(allotSelect2.value)">Modify</label>
+                </form> -->
+                <h5 class="card-title">Step <label class="mandatory"> *</label></h5>
+                <div>
+                    <form>
+                        <label for="dc">DC</label>
+                            <input type="radio" name="rad" class="mt-1"  id="dc" #dcSelect style="margin: 10px;"  [(ngModel)]="DC" value="DC"  
+                            (click)="onClick(dcSelect.value)">
+                        <label for="qc">QC</label>
+                            <input type="radio" name="rad" id="qc" class="mt-1" #qcSelect style="margin: 10px;"  [(ngModel)]="QC" value="QC"  
+                            (click)="onClick(qcSelect.value)" >
+                        <label for="qa">QA</label>
+                            <input type="radio" name="rad" id="qa" class="mt-1" #qaSelect style="margin: 10px;"  [(ngModel)]="QA" value="QA"  
+                            (click)="onClick(qaSelect.value)" >
+                            <label for="rework">Rework</label>
+                                <input type="radio" name="rad" id="rework" class="mt-1" #reworkSelect style="margin: 10px;"  [(ngModel)]="rework" value="Rework"  
+                                (click)="onClick(reworkSelect.value)" >                   
+                            
+                    </form>
+                </div> 
+            </div>
+            <div class="card p-2" id="card">
+                <h5 class="card-title">Metro Type <label class="mandatory"> *</label></h5>
+                <div >
+                    <form>
+                        <label for="metro" >Metro </label>
+                            <input class="form-check-input mt-1"  #mySelect type="radio" name="radmet" id="metro" style="margin: 8px;" [(ngModel)]="metro" value="METRO" 
+                            (change)="onItemChange(mySelect.value)">
+                        <label for="nonmetro" >Non-Metro</label>
+                            <input class="form-check-input mt-1" #Select type="radio" name="radmet" id="nonmetro" style="margin: 8px;" [(ngModel)]="nonmetro" value="Non-METRO"  
+                            (change)="onItemChange(Select.value)">
+                    </form>
+                </div>
+            </div>
+            
+        </div>
+        <div class="w-25" id="test2">
+            <div class="card p-2" id="card3">
+                <h5 class="card-title">Commerce Type <label class="mandatory"> *</label></h5>
+                <div >
+                    <form>
+                        <label for="commerce">
+                            <select #commerceSelect (change)="changeCommerce(commerceSelect.value)" style="width: 200px;">
+                                <option>Select</option>
+                                <option>Ecommerce</option>
+                                <option>Non-Ecommerce</option>
+                            </select>
+                        </label> 
+                    </form>
+                </div>
+            </div>
+            <div class="card p-2" id="card3">
+                <h5 class="card-title">User Type</h5>
+                <div >
+                   
+                        <label for="u_dc" class="lbluser">DC</label>
+                            <input type="radio" id="u_dc" name="type1" style="margin: 10px;" class="form-check-input"   [(ngModel)]="ddlUserType" value="DC"  
+                            (change)="onuserChange(dcSelect.value)">
+                        <label for="u_qc" class="lbluser">QC</label>
+                            <input type="radio" name="type1" id="u_qc" style="margin: 10px;" class="form-check-input"  [(ngModel)]="ddlUserType" value="QC"  
+                            (change)="onuserChange(qcSelect.value)">
+                        <label for="u_qa" class="lbluser">QA</label>
+                            <input type="radio" name="type1" id="u_qa" style="margin: 10px;" class="form-check-input"  [(ngModel)]="ddlUserType" value="QA"   
+                            (change)="onuserChange(qaSelect.value)">
+                        <label for="shipment" class="lbluser">Shipment</label>
+                            <input type="radio" name="type1" id="shipment" style="margin: 10px;" class="form-check-input" #shipmentSelect  [(ngModel)]="shipment" value="shipment"  
+                            (click)="getShipmentData()">
+                            
+                  
+                </div>                
+            </div>
+            <!-- <div class="card" id="card3">
+                <h5 class="card-title">Step</h5>
+                <div class="container">
+                    <form>
+                        <label for="dc">DC
+                            <input type="radio" name="DC" id="dc" #dcSelect style="margin: 10px;"  [(ngModel)]="DC" value="DC"  
+                            (click)="onClick(dcSelect.value)"></label>
+                        <label for="qc">QC
+                            <input type="radio" name="QC" id="qc" #qcSelect style="margin: 10px;"  [(ngModel)]="QC" value="QC"  
+                            (click)="onClick(qcSelect.value)" ></label>
+                        <label for="qa">QA
+                            <input type="radio" name="QA" id="qa" #qaSelect style="margin: 10px;"  [(ngModel)]="QA" value="QA"  
+                            (click)="onClick(qaSelect.value)" ></label>                       
+                            
+                    </form>
+                </div>                
+            </div> -->
+            <!-- <div class="card" style="width: 30px;height: 165px;margin-left: 15px;margin-top: 7px;">
+                <button class="btn btn-info" (click)="reload()" style="height: 165px;">RESET</button>
+            </div> -->
+        </div>
+        <div class="w-50" id="test3">
+            <div style="clear: both;margin: 5px;"></div>
+            <div class="card p-2" id="card4">
+                <h5 class="card-title">Allotment</h5>
+                <div class="container">
+                    <form #ngForm>
+                        <div class="d-flex">
+                            <div>
+                        <label *ngIf = "show"> DC Name
+                            <select  #dcuserSelect class="textboxsize" (change)="dcUserChange(dcuserSelect.value)" >
+                                <option [value]= "0" >select</option>
+                                <option  *ngFor="let d of name" >{{d.Username}}</option>
+                            </select></label>
+                        <label for="qc" *ngIf = "qc">QC Name
+                            <select #qcuserSelect class="textboxsize" (change)="qcUserChange(qcuserSelect.value)" >
+                                <option value= "0">select</option>
+                                <option *ngFor="let q of qcnames">{{q.Username}}</option>
+                            </select></label>
+                        <label for="qa" *ngIf = "qa">QA Name
+                            <select #qauserSelect class="textboxsize" (change)="qaUserChange(qauserSelect.value)"  >
+                                <option value= "0">select</option>
+                                <option *ngFor="let qa of qanames">{{qa.Username}}</option>
+                            </select></label>
+                        </div>
+                           <div > <button class="btnsave" style="margin-left: 8px; width:100px; height:28px;padding:0;" (click)="onAllot()">Allot</button></div>
+                        </div>
+                        <br>
+                        <div *ngIf = "shipment">
+                        <h5  >Shipment
+                        <input type="date" name="shipmentdate" [(ngModel)]="form.shipmentdate" style="width: 230px !important;">
+                         <button class="btnsave" style="margin-left: 8px; width:100px; height:28px;padding:0;" (click)="shipmentUpdate()">Submit</button></h5>
+                         </div> 
+                        </form>
+                        
+                </div>
+            </div>
+        </div>
+</div>
+<div class="card p-2 m-2" style="width: 98%;">
+    <h5 class="card-title">Filters</h5>
+    <div class="d-flex">
+        <div>
+            <div>Duplicate</div>
+                <div><select name="Duplicate" class=" textboxsize" [(ngModel)]="duplicate" #Duplicate="ngModel">
+                    <option value="">Select</option>
+                </select></div>
+        </div>
+        <div class="filterDdl">
+            <div>State</div>
+                <div><select name="State" class=" textboxsize" [(ngModel)]="state" #State="ngModel" (change)="stateChange(state)">
+                    <option value="">Select</option>
+                    <option *ngFor = "let s of statesdata">{{s.State}}</option>                    
+                </select></div>
+        </div>
+        <div class="filterDdl">
+            <div>Agency_Ori</div>
+                <div><select name="Agency_Ori" class=" textboxsize" [(ngModel)]="agencyOri" #Agency_Ori="ngModel" (change)="agencyChange(agencyOri)">
+                    <option value="">Select</option>
+                    <option *ngFor = "let agency of agencyoridata">{{agency.agency_ori}}</option>
+                </select></div>
+        </div>
+        <div class="filterDdl">
+            <div>Received Date</div>
+                <div><select name="ReceivedDate" class=" textboxsize" [(ngModel)]="receivedDate" #ReceivedDate="ngModel" (change)="receivedDateChange(receivedDate)">
+                    <option value="">Select</option>
+                    <option *ngFor = "let r of receivedDatedata">{{r.ReceivedDate}}</option>
+                </select></div>
+        </div>
+        <div class="filterDdl">
+            <div>DC Name</div>
+                <div><select name="DCName" class=" textboxsize" [(ngModel)]="dCName" #DCName="ngModel" (change)="dcNameChange(dCName)">
+                    <option value="">Select</option>
+                    <option *ngFor = "let dc of dcnamedata">{{dc.DC_Name}}</option>
+                </select></div>
+        </div>        
+    </div>
+    <div class="d-flex">
+        <div class="filterDdl">
+            <div>DC Comp Date</div>
+                <div><select name="DCCompDate" class=" textboxsize" [(ngModel)]="dCCompDate" #DCCompDate="ngModel" (change)="dcCompDateChange(dCCompDate)">
+                    <option value="">Select</option>
+                    <option *ngFor = "let dc of dcCompdatedata">{{dc.DCComp_Date}}</option>
+                </select></div>
+        </div>
+        <div>
+            <div>QC Name</div>
+                <div><select name="QCName" class=" textboxsize" [(ngModel)]="qCName" #QCName="ngModel" (change)="qcNameChange(qCName)">
+                    <option value="">Select</option>
+                    <option *ngFor = "let qc of qcNamedata">{{qc.QC_By}}</option>
+                </select></div>
+        </div>
+        <div class="filterDdl">
+            <div>QC Comp Date</div>
+                <div><select name="QCCompDate" class=" textboxsize" [(ngModel)]="qCCompDate" #QCCompDate="ngModel" (change)="qcCompDateChange(qCCompDate)">
+                    <option value="">Select</option>
+                    <option *ngFor = "let qc of qcCompDatedata">{{qc.QCComp_Date}}</option>
+                </select></div>
+        </div>
+        <div class="filterDdl">
+            <div>Count</div>
+                <div><input type="" name="selectValue" [(ngModel)]="form.selectValue"></div>
+        </div>
+        <div style="margin-left: 60px;" ><button class="btnsave mt-3" (click)="myFunction()">Select</button></div>
+        <div style="margin-left: 30px;" ><button class="btnsave mt-3" (click)="getData()">Search</button></div>
+    </div>
+</div>
+<div class="w-100 card p-1 mt-1">
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf = "showMetro">
+        <ng2-smart-table #table [settings]="settings" [source]="metrofiles" (userRowSelect)="onUserRowSelect($event)" ></ng2-smart-table>
+        <span style="float: left;">Total Records = {{this.metrolength}}</span>
+    </div>
+</div>
+<div class="w-100 card p-1 mt-1">
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf = "showNonMetro">
+        <ng2-smart-table #table [settings]="settings" [source]="nonmetrofiles" (userRowSelect)="onUserRowSelect($event)"></ng2-smart-table>
+        <span style="float: left;">Total Records = {{this.nonmetrolength}}</span>
+    </div>
+</div>
+<div class="w-100 card p-1 mt-1">
+    <div style="text-align:center; margin-top:25px; margin-bottom: 30px;" *ngIf = "showshipment">
+        <ng2-smart-table #table [settings]="settings" [source]="shipmentdata" (userRowSelect)="onUserRowSelect($event)"></ng2-smart-table>
+        <span style="float: left;">Total Records = {{this.shipmenttotal}}</span>
+    </div>
+</div>
+<!--Time Spent Large modal -->
+<div class="modal" id="timeSpentModal" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" [ngStyle]="{'display': popupDisplay}">
+    <div class="modal-dialog modal-lg modal-xl">
+      <div class="modal-content">
+          <div class="modal-header">
+              <h5 class="modal-title heading" >Selected Records</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="closePopup()">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div>
+                <div class="d-flex">
+                        <div >
+                            <label for="u_dc" class="lbluser">DC</label>
+                                <input type="radio" id="u_dc" name="type1" style="margin: 10px;" class="form-check-input"   [(ngModel)]="ddlUserType" value="DC"  
+                                (change)="onuserChange(dcSelect.value)">
+                            <label for="u_qc" class="lbluser">QC</label>
+                                <input type="radio" name="type1" id="u_qc" style="margin: 10px;" class="form-check-input"  [(ngModel)]="ddlUserType" value="QC"  
+                                (change)="onuserChange(qcSelect.value)">
+                            <label for="u_qa" class="lbluser">QA</label>
+                                <input type="radio" name="type1" id="u_qa" style="margin: 10px;" class="form-check-input"  [(ngModel)]="ddlUserType" value="QA"   
+                                (change)="onuserChange(qaSelect.value)">
+                           
+                    </div>
+                    <div>
+                <label *ngIf = "show"> DC Name
+                    <select  #dcuserSelect class="textboxsize" (change)="dcUserChange(dcuserSelect.value)" >
+                        <option [value]= "0" >select</option>
+                        <option  *ngFor="let d of name" >{{d.Username}}</option>
+                    </select></label>
+                <label for="qc" *ngIf = "qc">QC Name
+                    <select #qcuserSelect class="textboxsize" (change)="qcUserChange(qcuserSelect.value)" >
+                        <option value= "0">select</option>
+                        <option *ngFor="let q of qcnames">{{q.Username}}</option>
+                    </select></label>
+                <label for="qa" *ngIf = "qa">QA Name
+                    <select #qauserSelect class="textboxsize" (change)="qaUserChange(qauserSelect.value)"  >
+                        <option value= "0">select</option>
+                        <option *ngFor="let qa of qanames">{{qa.Username}}</option>
+                    </select></label>
+                </div>
+                   <div > <button class="btnsave" style="margin-left: 8px; width:100px; height:28px;padding:0;" (click)="multiAllot()">Allot</button></div>
+                </div>
+            </div>          
+         
+            <div class="modal-body">
+                <div class="fixTableHead">
+                <table class="w-100 table table-bordered" >
+                    <thead class="tblheading">
+                    <tr>
+                        <th>Agency_Ori</th>
+                        <th>File_org_name</th>
+                        <th>County</th>
+                        <th>State</th>
+                        <th>Received_Date</th>
+                                                
+                    </tr>
+                </thead>
+                <tbody>
+                     <tr *ngFor="let item of userAllotArray;">
+                        <td>{{item.agency_ori}}</td>
+                        <td>{{item.File_org_name}}</td>
+                        <td>{{item.County}}</td>
+                        <td>{{item.state}}</td>
+                        <td>{{item.ReceivedDate}}</td>                      
+                        
+                    </tr>
+                   
+                </tbody>
+                </table>
+            </div>
+         
+      </div>
+    </div>
+  </div>
